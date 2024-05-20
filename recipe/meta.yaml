@@ -6,11 +6,12 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/jupyter-xeus/xeus-octave/archive/v{{ version }}.tar.gz
-  sha256: b3b6f3fa001c4d5589836d4a5809829b96264966647098ca8f9d64f4afc020dc
+  git_url: https://github.com/chickadee-engineering/jupyter-xeus/xeus-octave.git
+  git_rev: e7c5d9469650f7c73d1f924fe632363a13315ce4
+  git_depth: 1
 
 build:
-  number: 5
+  number: 6
   skip: true  # [win]
 
 requirements:
@@ -26,19 +27,20 @@ requirements:
     - {{ cdt('libxxf86vm') }}  # [linux]
     - {{ cdt('libxext') }}     # [linux]
   host:
-    - octave >=7.0,<8.0
+    - octave 9.*
     - xorg-libxfixes  # [linux]
     - glfw
     - glad
     - libpng
-    - xeus-zmq >=1.0,<2.0
-    - nlohmann_json >=3.9.1,<4.0
+    - xeus-zmq >=1.0,<1.2
+    - nlohmann_json =3.11.2
     - cppzmq
     - xtl >=0.7,<1.0
     - xproperty
 
   run:
     - glfw
+    - glad
     - xeus
     - zeromq
     # Octave is missing a run_exports section
